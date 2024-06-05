@@ -1,0 +1,213 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main_v2.css"></link>
+    <title>Algerie Poste ECommerce</title>
+    <script type="text/javascript" src="../../js/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="../../js/jquery.timers-1.2.js"></script>
+    <script type="text/javascript" src="../../js/jquery.url.js"></script>
+    <script type="text/javascript" src="../../js/jquery.payment.js?1"></script>
+    <script type="text/javascript">
+        $(document).payment({
+            language: "en",
+            messageAjaxError: "Service temporary unavailable. Please, try later.",
+            messageTimeRemaining: "Session expired in #MIN#:#SEC#",
+            messageNoEpinForCard: "No EPin for card. Please use another card.",
+
+            orderId: "orderNumber",
+
+            paymentAction: "../../rest/processform.do",
+            getSessionStatusAction: "../../rest/getSessionStatus.do",
+            showErrorAction: "../../rest/showErrors.do",
+            checkEpinAvailableForCardAction: "../../rest/checkEpinAvailableForCard.do",
+
+            updatePage: function(data) {
+                $("#orderNumber").text(data['orderNumber']);
+                $("#amount").text(data['amount']);
+            },
+
+            addEpinField: function(settings) {
+                if ($('#paymentDataTable .epinEntryRow')) {
+                    $('#paymentDataTable .epinEntryRow').remove();
+                }
+                $('#paymentDataTable tr:last').before('<tr class="epinEntryRow" valign="TOP"><td valign="top" width="50%" align="right"><span class="txt_white">E-Commerce PIN :</span></td><td valign="top"><input name="' + settings.ePinInputId + '" maxlength="4" id="' + settings.ePinInputId + '" type="password" autocomplete="off" /></td></tr>');
+            },
+
+            removeEpinField: function() {
+                if ($('#paymentDataTable .epinEntryRow')) {
+                    $('#paymentDataTable .epinEntryRow').remove();
+                }
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <div id="wrap">
+        <div id="content">
+                            <table border="0" cellpadding="0" cellspacing="0">
+                                <tbody>
+
+                                    <tr class="main_table_row">
+
+                                        <td class="main_table_col">
+                                            <img src="images/logo-alg.png" width="60px" height="60px" style="margin-right: 10px; float:left;" />
+                                            <div id="main_table_row_tt">
+                                                <h1 class="form_header">Informations personnelles</h1>
+                                                <p class="form_subheader">Veuillez entrer les informations de votre carte</p>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr class="main_table_row">
+
+                                        <td class="main_table_col payment_form">
+                                            <form name="PaymentForm" action="" method="post" id="formPayment">
+                                                <input id="mdOrder" type="hidden" />
+                                                <input id="location" type="hidden" value="/../" />
+                                                <input type="hidden" id="expiry" />
+                                                <input id="language" value="EN" type="hidden" />
+                                                <div id="errorBlock" style="color:red;"></div>
+                                                <div id="infoBlock"></div>
+                                                <table cellpadding="10" id="paymentDataTable">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                <div id="indicator" style="display:none;">
+                                                                    <label for="indicatorImage" class="formLabel">&nbsp;</label>
+                                                                    <div class="val" id="indicatorImage">
+                                                                        <img src="images/ajax-loader.gif" height="19" width="220" alt="indicator" />
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <!--<tr valign="TOP">
+                                                            <td valign="top" colspan="2">
+                                                                <div id="numberCountdown" class="form_label"/>
+                                                            </td>
+                                                        </tr>-->
+                                                        <tr>
+                                                            <td class="form_label1">
+                                                                <div id="numberCountdown" class="form_label" />
+                                                            </td>
+                                                            <td width="100%">
+                                                                <table cellpadding="5px" cellspacing="0" class="order_info">
+                                                                    <!--  style="margin-top: 10px;" -->
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <th>Order number</th>
+                                                                            <th>Total</th>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <div id="orderNumber" />
+                                                                            </td>
+                                                                            <td>
+                                                                                <div id="amount" />
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                        <!--<tr valign="TOP">
+                                                            <td valign="top" colspan="2">
+                                                                <div id="infoBlock"/>
+                                                            </td>
+                                                        </tr>-->
+                                                        <tr valign="TOP">
+                                                            <td valign="top" width="50%" align="right" class="form_label1">
+                                                                <span class="form_label">Credit card number:</span>
+                                                            </td>
+                                                            <td valign="top">
+                                                                <span class="form_label form_label2">Credit card number:</span>
+                                                                <input name="$PAN" class="form_input" maxlength="19" id="iPAN" type="text" autocomplete="off" value="" />
+                                                            </td>
+                                                        </tr>
+                                                        <tr valign="TOP">
+                                                            <td valign="top" align="right" class="form_label1">
+                                                                <span class="form_label">year end card:</span>
+                                                            </td>
+                                                            <td valign="top">
+                                                                <span class="form_label form_label2">year end card:</span>
+
+                                                                <select name="MM" id="month" class="form_input">
+                                                                    <option value="01" >&nbsp;&nbsp;1 - January</option>
+                                                                    <option value="02">&nbsp;&nbsp;2 - February</option>
+                                                                    <option value="03">&nbsp;&nbsp;3 - March</option>
+                                                                    <option value="04">&nbsp;&nbsp;4 - April</option>
+                                                                    <option value="05">&nbsp;&nbsp;5 - May</option>
+                                                                    <option value="06">&nbsp;&nbsp;6 - June</option>
+                                                                    <option value="07">&nbsp;&nbsp;7 - July</option>
+                                                                    <option value="08">&nbsp;&nbsp;8 - August</option>
+                                                                    <option value="09">&nbsp;&nbsp;9 - September</option>
+                                                                    <option value="10">10 - October</option>
+                                                                    <option value="11" selected>11 - November</option>
+                                                                    <option value="12">12 - December</option>
+                                                                </select> /
+                                                                <select name="YYYY" id="year" class="form_input">
+                                                                    <option value="2016">2016</option>
+                                                                    <option value="2017">2017</option>
+                                                                    <option value="2018">2018</option>
+                                                                    <option value="2019" selected>2019</option>
+                                                                    <option value="2020">2020</option>
+                                                                    <option value="2021">2021</option>
+                                                                    <option value="2022">2022</option>
+                                                                    <option value="2023">2023</option>
+                                                                    <option value="2024">2024</option>
+                                                                    <option value="2025">2025</option>
+                                                                    <option value="2026">2026</option>
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="right" class="form_label1">
+                                                                <span class="form_label">My name:</span>
+                                                            </td>
+                                                            <td>
+                                                                <span class="form_label form_label2">My name:</span>
+                                                                <input class="form_input" name="TEXT" maxlength="90" id="iTEXT" type="text" autocomplete="off" value="" />
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="right" class="form_label1">
+                                                                <span class="form_label">Enter the code CVC2/CVV2:</span>
+                                                                <br/>
+                                                                <span class="form_label" style="font-size: .85em; font-style: italic;">(Located on the back of the card)
+                                                                </span>
+                                                            </td>
+                                                            <td>
+
+
+
+                                                                <span class="form_label form_label2">Enter the code CVC2/CVV2:</span>
+
+                                                                <span class="form_label form_label2" style="font-size: 0.70em; font-style: italic;">(Located on the back of the card)
+                                                                            </span>
+
+
+
+
+                                                                <input class="form_input" name="$CVC" maxlength="4" id="iCVC" type="password" autocomplete="off" value="" />
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <input name="SendPayment" type="hidden" id="realPayment" />
+                                                <input name="SendPayment2" value="Submit" type="button" class="submit_button" id="buttonPayment" />
+                                            </form>
+                                            <form id="acs" method="post" action=""><input type="hidden" id="language" name="language" value="en" /><input type="hidden" id="MD" name="MD" /><input type="hidden" id="PaReq" name="PaReq" /><input type="hidden" id="TermUrl" name="TermUrl" /></form>
+                                        </td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        
+            <p class="footer">Tous Droits Reserves. Algerie Poste &copy; 2016</p>
+        </div>
+    </div>
+</body>
+
+</html>
