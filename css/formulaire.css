@@ -1,0 +1,67 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: 20% auto; /* Une colonne pour les labels et une pour les champs de saisie */
+  grid-column-gap: 20px; /* Espacement entre les colonnes */
+  align-items: center; /* Aligner verticalement */
+}
+
+#nou_prd{
+  padding-top:8rem;
+}
+.grid-container label, legend {
+  font-size: 1.5rem;
+  grid-column: 1; /* Colonne 1 */
+}
+
+.grid-container input[type="text"],
+.grid-container input[type="number"], 
+.grid-container input[type="date"],
+.grid-container input[type="password"],
+.grid-container input[type="email"],
+.grid-container select {
+  grid-column: 2; /* Colonne 2 */
+  /*width: calc(100% - 20px); Largeur de 100% moins l'espacement */
+  width: 400px; 
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.grid-container input[type="radio"] {
+  grid-column: 2; /* Colonne 2 */
+  /*width: calc(100% - 20px); Largeur de 100% moins l'espacement */
+  width: 100px; 
+  padding: 8px;
+  margin-left: 100px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.grid-container input[type="submit"] {
+  grid-column: 1 / span 2; /* Occupant deux colonnes */
+  font-size: 1.5 rem;
+  font-weight: bold;
+  width: 200px;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #fa2e7e;;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.grid-container h2 {
+  grid-column: 1 / span 2; /* Occupant deux colonnes */
+  font-size: 2.5rem;
+  font-weight: bold;
+  width: 500px;
+  margin-top: 20px;
+  padding:1rem;
+  padding-top: 5rem;
+  color: #fa2e7e;
+}
+.grid-container fieldset {
+  grid-column: 1 / span 2; /* Occupant deux colonnes */
+  font-size: 1.5rem;
+  width: 600px;
+  margin-top: 10px;
+  padding-top: 2rem;
+}
