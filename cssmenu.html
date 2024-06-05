@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Menucool Css Menu</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <link href="css/cssmenu.css" rel="stylesheet" />
+    <style>
+        body {
+            margin:0;
+            background:#FFFFFF;
+        }
+        #menuDemo { text-align:center; padding:30px 8px; }
+    </style>
+</head>
+<body>
+<header>
+<a href="#" class="logo"><img src="images/logo.png"></a> 
+<!--start CssMenu-->
+<nav id="cssmenu">
+    <ul>
+        <li><a href="#">Acceuil</a></li>
+        <li>
+            <span>Promotion <i class="arrow"></i></span>
+            <ul class="dropdown">
+                <li>
+                    <span>Produit <i class="arrow"></i></span>
+                    <ul class="dropdown">
+                        <li><a href="#">Vetement</a></li>
+                        <li><a href="#">Produits alimentaires</a></li>
+                        <li><a href="#">Produits cosmetiques</a></li>
+                        <li><a href="#">Librairie</a></li>
+                        <li><a href="#">Electromenagie</a></li>
+                        <li><a href="#">Autre</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <span>Service<i class="arrow"></i></span>
+                    <ul class="dropdown">
+                        <li><a href="#">Hotellerie</a></li>
+                        <li><a href="#">Billeterie</a></li>
+                        <li><a href="#">Restauration</a></li>
+                        <li><a href="#">Soin pour femme</a></li>
+                        <li><a href="#">Autre</a>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <span>Destockage <i class="arrow"></i></span>
+            <ul class="dropdown">
+                <li>
+                    <span>Produit <i class="arrow"></i></span>
+                    <ul class="dropdown">
+                        <li><a href="#">Vetement</a></li>
+                        <li><a href="#">Produits alimentaires</a></li>
+                        <li><a href="#">Produits cosmetiques</a></li>
+                        <li><a href="#">Librairie</a></li>
+                        <li><a href="#">Electromenagie</a></li>
+                        <li><a href="#">Autre</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <span>Service<i class="arrow"></i></span>
+                    <ul class="dropdown">
+                        <li><a href="#">Hotellerie</a></li>
+                        <li><a href="#">Billeterie</a></li>
+                        <li><a href="#">Restauration</a></li>
+                        <li><a href="#">Soin pour femme</a></li>
+                        <li><a href="#">Autre</a>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li><a href="#">Produits avec defaut</a></li>
+    </ul>
+</nav>
+<!--end CssMenu-->
+<div class="icones">
+    <a href="livreur.html" class="fas fa-shipping-fast" title="Livraison"></a>
+    <a href="fournisseur.html" class="fa-solid fa-plus" id="plus" title="Ajouter annonce"></a>
+    <a href="client.html" class="fa-solid fa-user" id="user" title="Se connecter"></a>
+</div>
+</header>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire HTML vers JSON</title>
+</head>
+<body>
+    <form id="myForm">
+        <label for="name">Nom :</label>
+        <input type="text" id="name" name="name"><br><br>
+        <label for="email">Email :</label>
+        <input type="email" id="email" name="email"><br><br>
+        <button type="button" onclick="saveFormData()">Enregistrer</button>
+    </form>
+
+    <script>
+        function saveFormData() {
+            // Récupérer les éléments du formulaire
+            const nameInput = document.getElementById('name');
+            const emailInput = document.getElementById('email');
+
+            // Récupérer les valeurs des champs du formulaire
+            const name = nameInput.value;
+            const email = emailInput.value;
+
+            // Créer un objet JSON avec les données du formulaire
+            const formData = {
+                name: name,
+                email: email
+            };
+
+            // Convertir l'objet JSON en chaîne JSON
+            const jsonData = JSON.stringify(formData, null, 2);
+
+            // Créer un objet Blob à partir de la chaîne JSON
+            const blob = new Blob([jsonData], { type: 'application/json' });
+
+            // Créer un objet URL pour le blob
+            const url = window.URL.createObjectURL(blob);
+
+            // Créer un élément <a> pour le téléchargement
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'formData.json';
+            document.body.appendChild(a);
+
+            // Simuler un clic sur l'élément <a> pour démarrer le téléchargement
+            a.click();
+
+            // Nettoyer l'URL de l'objet Blob
+            window.URL.revokeObjectURL(url);
+
+            // Supprimer l'élément <a> du document
+            document.body.removeChild(a);
+        }
+    </script>
+</body>
+</html>
