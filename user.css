@@ -1,0 +1,50 @@
+.container {
+  display: flex;
+}
+
+.menu-vertical {
+  display: flex;
+  width: 200px; /* Largeur du menu vertical */
+  position: fixed; /* Position fixe */
+  top: 100px; /* Aligner le menu vertical en haut */
+  left: 0; /* Aligner le menu vertical à gauche */
+  height: 100%; /* Hauteur égale à 100% de la fenêtre */
+  background-color: #fcc718; /* Couleur de fond du menu */
+  overflow-y: auto; /* Activer le défilement vertical si nécessaire */
+}
+
+.menu-vertical ul {
+  list-style-type: none; /* Supprimer les puces de liste */
+  padding: 0;
+  border-style: double;
+  border: 1 solid;
+  border-color: #fa2e7e;
+  height: 400px; 
+
+}
+
+.menu-vertical ul li {
+  padding: 10px;
+  font-size: 1.6rem;
+}
+.menu-vertical ul {
+  margin-top: 50px;
+  margin-left: 20px;
+}
+.menu-vertical ul li a {
+  text-decoration: none;
+  color: #333;
+}
+
+.contenu {
+  display: flex;
+  top:100px;
+  left:220px;
+  /*margin-left: 220px;  Marge à gauche pour éviter le chevauchement avec le menu vertical */
+  padding: 20px;
+  background: #fcc718;
+}
+
+.contenu h1 {
+  color: #333;
+}

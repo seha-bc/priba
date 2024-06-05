@@ -1,0 +1,30 @@
+.rating {
+  display: inline-block;
+}
+
+.rating input {
+  display: none;
+}
+
+.rating label {
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  margin: 0 2px;
+  background-color: #ccc;
+  border-radius: 50%;
+  float: right;
+}
+
+.rating label:before {
+  content: '\2605';
+  font-size: 20px;
+  color: #fff;
+  line-height: 30px;
+  text-align: center;
+  display: block; /* Assure que le contenu est centré verticalement */
+}
+
+.rating input:checked ~ label {
+  background-color: #fa2e7e;
+}
